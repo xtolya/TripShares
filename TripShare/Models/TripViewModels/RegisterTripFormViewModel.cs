@@ -25,6 +25,6 @@ namespace TripShare.Models.TripViewModels
         [Required]
         public int Deposit { get; set; }
         [Required]
-        public DateTime CancelDate { get; set; }
+        public DateTime Cancel { get; set; }
     }
 }

@@ -21,5 +21,13 @@ namespace TripShare.Abstract
         Task<bool> VerifyAddress(string addr);
         Task<bool> InvokeContractMintToken(NETWORK_TYPE net, string wif, int neoAmount, int gasCost);
         Task<int> GetTokenBalance(NETWORK_TYPE net, string revSh);
+        Task<bool> InvokeContractRegisterTrip(NETWORK_TYPE net, string wif, Trip trip, int gasCost);
+        Task<bool> InvokeContractCancelTrip(NETWORK_TYPE net, string wif, string id, int gasCost);
+        Task<bool> InvokeContractTransfer(NETWORK_TYPE net, string wif, string from, string to, int amount, int gasCost);
+        Task<bool> InvokeContractCancelSeat(NETWORK_TYPE net, string wif, string id, string passengerId, int gasCost);
+        Task<bool> InvokeContractReserveSeat(NETWORK_TYPE net, string wif, string id, string passengerId, int gasCost);
+        Task<bool> InvokeContractPayForTrip(NETWORK_TYPE net, string wif, string id, string passengerId, int gasCost);
+        Task<bool> InvokeContractRequestRefund(NETWORK_TYPE net, string wif, string userId, int value, int gasCost);
+        Task<bool> InvokeContractCleanUp(NETWORK_TYPE net, string wif, string id, int gasCost);
     }
 }
