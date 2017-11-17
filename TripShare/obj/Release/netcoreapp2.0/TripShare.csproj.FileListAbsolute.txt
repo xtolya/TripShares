@@ -11,3 +11,16 @@ C:\Users\Tolya\source\repos\TripShare\TripShare\obj\Release\netcoreapp2.0\TripSh
 C:\Users\Tolya\source\repos\TripShare\TripShare\obj\Release\netcoreapp2.0\TripShare.pdb
 C:\Users\Tolya\source\repos\TripShare\TripShare\obj\Release\netcoreapp2.0\TripShare.Properties.Resources.resources
 C:\Users\Tolya\source\repos\TripShare\TripShare\obj\Release\netcoreapp2.0\TripShare.csproj.GenerateResource.Cache
+C:\Users\Tolya\source\repos\TripShare\TripShares\TripShare\bin\Release\netcoreapp2.0\TripShare.deps.json
+C:\Users\Tolya\source\repos\TripShare\TripShares\TripShare\bin\Release\netcoreapp2.0\TripShare.runtimeconfig.json
+C:\Users\Tolya\source\repos\TripShare\TripShares\TripShare\bin\Release\netcoreapp2.0\TripShare.runtimeconfig.dev.json
+C:\Users\Tolya\source\repos\TripShare\TripShares\TripShare\bin\Release\netcoreapp2.0\TripShare.dll
+C:\Users\Tolya\source\repos\TripShare\TripShares\TripShare\bin\Release\netcoreapp2.0\TripShare.pdb
+C:\Users\Tolya\source\repos\TripShare\TripShares\TripShare\obj\Release\netcoreapp2.0\TripShare.csprojResolveAssemblyReference.cache
+C:\Users\Tolya\source\repos\TripShare\TripShares\TripShare\obj\Release\netcoreapp2.0\TripShare.Properties.Resources.resources
+C:\Users\Tolya\source\repos\TripShare\TripShares\TripShare\obj\Release\netcoreapp2.0\TripShare.csproj.GenerateResource.Cache
+C:\Users\Tolya\source\repos\TripShare\TripShares\TripShare\obj\Release\netcoreapp2.0\TripShare.csproj.CoreCompileInputs.cache
+C:\Users\Tolya\source\repos\TripShare\TripShares\TripShare\obj\Release\netcoreapp2.0\TripShare.AssemblyInfoInputs.cache
+C:\Users\Tolya\source\repos\TripShare\TripShares\TripShare\obj\Release\netcoreapp2.0\TripShare.AssemblyInfo.cs
+C:\Users\Tolya\source\repos\TripShare\TripShares\TripShare\obj\Release\netcoreapp2.0\TripShare.dll
+C:\Users\Tolya\source\repos\TripShare\TripShares\TripShare\obj\Release\netcoreapp2.0\TripShare.pdb

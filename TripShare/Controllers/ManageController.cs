@@ -363,9 +363,14 @@ namespace TripShare.Controllers
             }
 
 
-            if (user.Wif != null && user.Address != null)
-                model = new WalletViewModel { HasGeneratedWallet = true, WalletInfo = new Wallet { wif = user.Wif, address = user.Address, scriptHash = user.ScriptHash } };
-            if (model.HasGeneratedWallet && model.AmountToMint > 0)
+            model.HasGeneratedWallet = true;
+            model.WalletInfo = new Models.Wallet()
+            {
+                wif = user.Wif,
+                address = user.Address,
+                scriptHash = user.ScriptHash
+            };
+            if (model.AmountToMint > 0)
             {
                 var res = await _blockchainRepository.InvokeContractMintToken(NETWORK_TYPE.TESTNET, user.Wif, model.AmountToMint, 1);
                 if (res)

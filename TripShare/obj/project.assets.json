@@ -13279,11 +13279,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tolya\\source\\repos\\TripShare\\TripShare\\TripShare.csproj",
+      "projectUniqueName": "C:\\Users\\Tolya\\source\\repos\\TripShare\\TripShares\\TripShare\\TripShare.csproj",
       "projectName": "TripShare",
-      "projectPath": "C:\\Users\\Tolya\\source\\repos\\TripShare\\TripShare\\TripShare.csproj",
+      "projectPath": "C:\\Users\\Tolya\\source\\repos\\TripShare\\TripShares\\TripShare\\TripShare.csproj",
       "packagesPath": "C:\\Users\\Tolya\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Tolya\\source\\repos\\TripShare\\TripShare\\obj\\",
+      "outputPath": "C:\\Users\\Tolya\\source\\repos\\TripShare\\TripShares\\TripShare\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
