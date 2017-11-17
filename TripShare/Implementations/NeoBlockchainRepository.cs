@@ -108,6 +108,128 @@ namespace TripShare.Implementations
                 return 0;
             }
         }
+
+        /*RegisterTrip(byte[] id, byte[] driver, string way, BigInteger date,
+          BigInteger cancelDate, BigInteger seatsCount, BigInteger price,
+          BigInteger depositDriver)
+
+          public static bool CancelTrip(byte[] id)
+
+          public static bool ReserveSeat(byte[] id, byte[] passenger)
+          public static bool CancelSeat(byte[] id, byte[] passenger)
+          public static bool PayForTrip(byte[] id, byte[] passenger)
+          public static bool RequestRefund(byte[] user, BigInteger value)
+          public static bool CleanUp(byte[] id)*/
+
+
+        public async Task<bool> InvokeContractRegisterTrip(NETWORK_TYPE net, string wif, Trip trip, int gasCost)
+        {
+            try
+            {
+                string revSh = Helper.ReverseHex(trip.DriverId);
+                uint a = trip.Date.ToTimestamp();
+                uint b = trip.CancelDate.ToTimestamp();
+                var res = await nodeServices.InvokeExportAsync<bool>(GetScriptLocation(),
+                    "InvokeContractRegisterTrip", GetNetwork(net), wif, CONTRACT_HASH, gasCost, Helper.Str2Hex(trip.Id), revSh, Helper.Str2Hex(trip.From + trip.To),
+                    a, b, trip.SeatsCount, trip.Price, trip.Deposit);
+                return res;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public async Task<bool> InvokeContractCancelTrip(NETWORK_TYPE net, string wif, string id, int gasCost)
+        {
+            try
+            {
+                var res = await nodeServices.InvokeExportAsync<bool>(GetScriptLocation(),
+                    "InvokeContractCancelTrip", GetNetwork(net), wif, CONTRACT_HASH, gasCost, Helper.Str2Hex(id));
+                return res;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public async Task<bool> InvokeContractTransfer(NETWORK_TYPE net, string wif, string from, string to, int amount, int gasCost)
+        {
+            try
+            {
+                var res = await nodeServices.InvokeExportAsync<bool>(GetScriptLocation(),
+                    "InvokeContractTransfer", GetNetwork(net), wif, CONTRACT_HASH, gasCost, Helper.ReverseHex(from), Helper.ReverseHex(to), amount);
+                return res;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public async Task<bool> InvokeContractCancelSeat(NETWORK_TYPE net, string wif, string id, string passengerId, int gasCost)
+        {
+            try
+            {
+                var res = await nodeServices.InvokeExportAsync<bool>(GetScriptLocation(),
+                    "InvokeContractCancelSeat", GetNetwork(net), wif, CONTRACT_HASH, gasCost, Helper.Str2Hex(id), Helper.ReverseHex(passengerId));
+                return res;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public async Task<bool> InvokeContractReserveSeat(NETWORK_TYPE net, string wif, string id, string passengerId, int gasCost)
+        {
+            try
+            {
+                var res = await nodeServices.InvokeExportAsync<bool>(GetScriptLocation(),
+                    "InvokeContractReserveSeat", GetNetwork(net), wif, CONTRACT_HASH, gasCost, Helper.Str2Hex(id), Helper.ReverseHex(passengerId));
+                return res;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public async Task<bool> InvokeContractPayForTrip(NETWORK_TYPE net, string wif, string id, string passengerId, int gasCost)
+        {
+            try
+            {
+                var res = await nodeServices.InvokeExportAsync<bool>(GetScriptLocation(),
+                    "InvokeContractPayForTrip", GetNetwork(net), wif, CONTRACT_HASH, gasCost, Helper.Str2Hex(id), Helper.ReverseHex(passengerId));
+                return res;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public async Task<bool> InvokeContractRequestRefund(NETWORK_TYPE net, string wif, string userId, int value, int gasCost)
+        {
+            try
+            {
+                var res = await nodeServices.InvokeExportAsync<bool>(GetScriptLocation(),
+                    "InvokeContractRequestRefund", GetNetwork(net), wif, CONTRACT_HASH, gasCost, Helper.ReverseHex(userId), value);
+                return res;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public async Task<bool> InvokeContractCleanUp(NETWORK_TYPE net, string wif, string id, int gasCost)
+        {
+            try
+            {
+                var res = await nodeServices.InvokeExportAsync<bool>(GetScriptLocation(),
+                    "InvokeContractCleanUp", GetNetwork(net), wif, CONTRACT_HASH, gasCost, Helper.Str2Hex(id));
+                return res;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }
 

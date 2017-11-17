@@ -21,10 +21,11 @@ namespace TripShare.Controllers
         private readonly ITripRepository tripRepository;
         private readonly IBlockchainRepository blockchain;
 
-        public TripController(UserManager<ApplicationUser> _userManager, ITripRepository _tripRepository)
+        public TripController(UserManager<ApplicationUser> _userManager, ITripRepository _tripRepository, IBlockchainRepository _blockchain)
         {
             userManager = _userManager;
             tripRepository = _tripRepository;
+            blockchain = _blockchain;
         }
 
         [HttpGet]
@@ -42,6 +43,7 @@ namespace TripShare.Controllers
             {
                 throw new ApplicationException($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
             }
+            DateTime d = trip.Cancel;
 
             Trip t = new Trip
             {
@@ -54,19 +56,28 @@ namespace TripShare.Controllers
                 Price = trip.Price,
                 SeatsCount = trip.SeatsCount,
                 Deposit = trip.Deposit,
-                CancelDate = trip.CancelDate
+                CancelDate = trip.Cancel
             };
 
-            if (true) //blockchain.AddTrip
+            var res = await blockchain.InvokeContractRegisterTrip(NETWORK_TYPE.TESTNET, user.Wif, t, 3);
+
+            if (res)
             {
                 if (tripRepository.AddTrip(t))
                 {
-                    ViewData["Message"] = "Your trip was registered";
+                    ViewData["Message"] = "Transaction sent to blockchain and added to db";
                     return View("RegisterTrip");
                 }
-                ViewData["Message"] = "registered to blockchain, failed to database";
+                ViewData["Message"] = "registered to blockchain";
                 return View("RegisterTrip");
             }
+
+            if (tripRepository.AddTrip(t))
+            {
+                ViewData["Message"] = "Transaction fail but added to db";
+                return View("RegisterTrip");
+            }
+
             ViewData["Message"] = "Failed to register to our database and blockchain";
             return View("RegisterTrip");
         }
@@ -80,7 +91,7 @@ namespace TripShare.Controllers
             }
 
             List<Trip> trips = tripRepository.FindTripBySh(user.ScriptHash).ToList();
-            foreach(var trip in trips)
+            foreach (var trip in trips)
             {
                 trip.Passengers = tripRepository.FindPassenger(trip).ToList();
             }
@@ -95,7 +106,7 @@ namespace TripShare.Controllers
             {
                 throw new ApplicationException($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
             }
-            
+
             Trip trip = tripRepository.FindTrip(id);
             if (trip.DriverId != user.ScriptHash)
             {
@@ -118,14 +129,22 @@ namespace TripShare.Controllers
                 throw new ApplicationException($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
             }
 
-            if (true)  //blockchain cancel trip
+            var res = await blockchain.InvokeContractCancelTrip(NETWORK_TYPE.TESTNET, user.Wif, id, 2);
+
+            if (res)  //blockchain cancel trip
             {
                 if (tripRepository.CancelTrip(id, user.ScriptHash))
                 {
-                    ViewData["Message"] = "Cancelled from bc and db";
+                    ViewData["Message"] = "Transaction sent to sc and deleted from db";
                     return View("CancelTripSucc");
                 }
-                ViewData["Message"] = "Cancelled from bc not db";
+                ViewData["Message"] = "cant cancel in db (transactions sent)";
+                return View("CancelTripSucc");
+            }
+
+            if (tripRepository.CancelTrip(id, user.ScriptHash))
+            {
+                ViewData["Message"] = "Transaction fail but removed from db";
                 return View("CancelTripSucc");
             }
 
@@ -177,14 +196,22 @@ namespace TripShare.Controllers
                 throw new ApplicationException($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
             }
 
-            if (true) //blockchain cancelseat method call
+            var res = await blockchain.InvokeContractCancelSeat(NETWORK_TYPE.TESTNET, user.Wif, id, user.ScriptHash, 2);
+
+            if (res) //blockchain cancelseat method call
             {
                 if (tripRepository.CancelSeat(id, user.Id))
                 {
-                    ViewData["Message"] = "Cancelled from db and bc";
+                    ViewData["Message"] = "Transaction sent and removed from db";
                     return View("CancelSeatSucc");
                 }
-                ViewData["Message"] = "Cancelled from bc not db";
+                ViewData["Message"] = "Transaction sent but fail to cancel on db";
+                return View("CancelSeatSucc");
+            }
+
+            if (tripRepository.CancelSeat(id, user.Id))
+            {
+                ViewData["Message"] = "Transaction fail but on registered on db";
                 return View("CancelSeatSucc");
             }
             ViewData["Message"] = "Failed to cancel";

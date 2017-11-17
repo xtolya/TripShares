@@ -27,11 +27,6 @@
             </div>
             <span asp-validation-for="Date" class="text-danger"></span>
             <div class="form-control-static">
-                <label asp-for="CancelDate">CancelDate</label>
-                <input asp-for="CancelDate" class="form-control" name="Cancel Date" placeholder="The date you depart">
-            </div>
-            <span asp-validation-for="CancelDate" class="text-danger"></span>
-            <div class="form-control-static">
                 <label asp-for="AdditionalWay">Your way</label>
                 <input asp-for="AdditionalWay" class="form-control" name="AdditionalWay" placeholder="Your city list on the road">
             </div>
@@ -51,6 +46,11 @@
                 <input asp-for="Deposit" class="form-control" name="Deposit" placeholder="How much you deposit on a trip">
             </div>
             <span asp-validation-for="Deposit" class="text-danger"></span>
+            <div class="form-control-static">
+                <label asp-for="Cancel">Cancel Date</label>
+                <input asp-for="Cancel" class="form-control" name="Cancel" placeholder="The date after which cancelation will lead to lose deposit">
+            </div>
+            <span asp-validation-for="Cancel" class="text-danger"></span>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     }
