@@ -61,3 +61,12 @@ typings/
 *.dll
 *.dll
 *.dll
+*.ide-shm
+*.ide-wal
+*.ide
+*.ide-shm
+*.ide-wal
+*.ide-shm
+.vs/TripShare/v15/.suo
+.vs/TripShare/v15/Server/sqlite3/storage.ide
+*.ide
