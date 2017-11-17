@@ -19,10 +19,9 @@ Click "your trips"
 CANCEL A TRIP:
 Click "your trips" -> "View"
 "Register a trip section"
-Create a trip on its section (Currently will only be commited in our db,
-soon we auto add trip from your wallet)
+Create a trip on its section
 Register form to be filled, then creates a trip and commits it
-to our bd and blockchain(currently only bd)
+to our bd and blockchain
 "Your seats"
 Displays all your sits which were reserved through web APP
 "refund section"
