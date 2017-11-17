@@ -15,8 +15,8 @@ else
 {
     var user = await UserManager.GetUserAsync(User);
     var balances = await BlockchainRepository.GetBalance(NETWORK_TYPE.TESTNET, user.Address);
-    var str = await BlockchainRepository.GetStorage(NETWORK_TYPE.TESTNET, Helper.ReverseHex(user.ScriptHash));
-    balances.TSR = str == null ? 0 : Helper.Hex2Num(str);
+    var str = await BlockchainRepository.GetTokenBalance(NETWORK_TYPE.TESTNET, Helper.ReverseHex(user.ScriptHash));
+    balances.TSR = str;
     <h2>@ViewData["Message"]</h2>
     <form class="form-horizontal" method="post">
         <div class="form-group">
@@ -64,17 +64,6 @@ else
                 </div>
             </div>
         }
-        <div class="form-group" method ="post">
-            <label asp-for="AmountToMint" class="col-sm-2 control-label">Amount to mint in (in neo)</label>
-            <div class="col-sm-10">
-                <input asp-for="AmountToMint" class="form-control col" placeholder="Amount to mint" />
-            </div>
-            <span asp-validation-for="AmountToMint" class="text-danger"></span>
-
-        </div>
-        <div>
-            <button type="submit" class="btn btn-primary col-sm-6" value="Submit">Mint</button>
-        </div>
     </form>
 }
 

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.NodeServices;
 using TripShare.Models;
 using TripShare.Abstract;
+using Newtonsoft.Json;
 
 namespace TripShare.Implementations
 {

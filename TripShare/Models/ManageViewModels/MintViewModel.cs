@@ -5,11 +5,9 @@ using System.Threading.Tasks;
 
 namespace TripShare.Models.ManageViewModels
 {
-    public class WalletViewModel
-
+    public class MintViewModel
     {
-        public bool HasGeneratedWallet { get; set; }
-        public Wallet WalletInfo { get; set; }
+        public int Amount { get; set; }
+        public string wif { get; set; }
     }
-
 }

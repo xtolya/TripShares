@@ -23,6 +23,8 @@ namespace TripShare.Views.Manage
 
         public static string Withdraw => "Withdraw";
 
+        public static string Mint => "Mint";
+
         public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
 
         public static string ChangePasswordNavClass(ViewContext viewContext) => PageNavClass(viewContext, ChangePassword);
@@ -34,6 +36,8 @@ namespace TripShare.Views.Manage
         public static string WalletNavClass(ViewContext viewContext) => PageNavClass(viewContext, Wallet);
 
         public static string WithdrawNavClass(ViewContext viewContext) => PageNavClass(viewContext, Withdraw);
+
+        public static string MintNavClass(ViewContext viewContext) => PageNavClass(viewContext, Mint);
 
         public static string PageNavClass(ViewContext viewContext, string page)
         {

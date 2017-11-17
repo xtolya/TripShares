@@ -351,39 +351,6 @@ namespace TripShare.Controllers
             return View(new WalletViewModel { HasGeneratedWallet = false });
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Wallet(WalletViewModel model)
-        {
-            ViewData["Message"] = "";
-            var user = await _userManager.GetUserAsync(User);
-
-            if (user == null)
-            {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
-
-
-            model.HasGeneratedWallet = true;
-            model.WalletInfo = new Models.Wallet()
-            {
-                wif = user.Wif,
-                address = user.Address,
-                scriptHash = user.ScriptHash
-            };
-            if (model.AmountToMint > 0)
-            {
-                var res = await _blockchainRepository.InvokeContractMintToken(NETWORK_TYPE.TESTNET, user.Wif, model.AmountToMint, 1);
-                if (res)
-                {
-                    ViewData["Message"] = "Wait, soon to be updated!";
-                    return View(model);
-                }
-            }
-
-            ViewData["Message"] = "Failed";
-            return View(model);
-        }
-
         [HttpGet]
         public async Task<IActionResult> GenerateWallet()
         {
@@ -591,6 +558,52 @@ namespace TripShare.Controllers
                     return View(model);
                 }
                 ViewData["Message"] = "Failed to withdraw";
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Mint()
+        {
+            ViewData["Message"] = "Input info";
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Mint(MintViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.GetUserAsync(User);
+                if (user == null)
+                {
+                    throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                }
+
+                model.wif = user.Wif;
+                bool send = true;
+                ViewData["Message"] = "";
+                var balance = await _blockchainRepository.GetBalance(NETWORK_TYPE.TESTNET, user.Address);
+
+                if (balance.NEO < model.Amount)
+                {
+                    ViewData["Message"] = "insufficient funds";
+                    return View(model);
+                }
+
+                if (model.Amount > 0)
+                {
+                    send = await _blockchainRepository.InvokeContractMintToken(NETWORK_TYPE.TESTNET, user.Wif, model.Amount, 1);
+                    if (send)
+                    {
+                        ViewData["Message"] = "Wait, soon to be updated!";
+                        return View(model);
+                    }
+                }
+
+                ViewData["Message"] = "Failed to mint";
             }
 
             // If we got this far, something failed, redisplay form

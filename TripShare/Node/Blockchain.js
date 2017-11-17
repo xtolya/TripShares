@@ -1,8 +1,8 @@
 ﻿let { getAccountFromWIFKey, generatePrivateKey,
     getStorage, getTransactionHistory, doSendAsset,
     getWIFFromPrivateKey, getBalance, verifyAddress,
-    queryRPC, serializeTransaction, create,
-    signTransaction, getScriptHashFromAddress } = require("neon-js")
+    queryRPC, serializeTransaction, create, signTransaction,
+    getScriptHashFromAddress, ASSETS } = require("neon-js")
 
 function ReverseHex(hex) {
     if (hex.length % 2 !== 0)

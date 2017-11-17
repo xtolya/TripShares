@@ -29,6 +29,7 @@ C:\Users\Tolya\source\repos\TripShare\TripShares\TripShare
 --file=C:\Users\Tolya\source\repos\TripShare\TripShares\TripShare\Views\Manage\GenerateRecoveryCodes.cshtml
 --file=C:\Users\Tolya\source\repos\TripShare\TripShares\TripShare\Views\Manage\GenerateWallet.cshtml
 --file=C:\Users\Tolya\source\repos\TripShare\TripShares\TripShare\Views\Manage\Index.cshtml
+--file=C:\Users\Tolya\source\repos\TripShare\TripShares\TripShare\Views\Manage\Mint.cshtml
 --file=C:\Users\Tolya\source\repos\TripShare\TripShares\TripShare\Views\Manage\ResetAuthenticator.cshtml
 --file=C:\Users\Tolya\source\repos\TripShare\TripShares\TripShare\Views\Manage\SetPassword.cshtml
 --file=C:\Users\Tolya\source\repos\TripShare\TripShares\TripShare\Views\Manage\TwoFactorAuthentication.cshtml
