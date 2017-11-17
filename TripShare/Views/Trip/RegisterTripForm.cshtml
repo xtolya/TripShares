@@ -1,0 +1,64 @@
+﻿@inject UserManager<ApplicationUser> UserManager
+
+@model RegisterTripFormViewModel
+@{
+    ViewData["Title"] = "Register a trip";
+}
+<h2>@ViewData["Title"]</h2>
+
+@{var user = await UserManager.GetUserAsync(User);
+
+    if (user.ScriptHash != null)
+    {
+        <form method="post">
+            <div class="form-control-static">
+                <label asp-for="From">Departure Point</label>
+                <input asp-for="From" class="form-control" name="From" placeholder="The city you departure from">
+            </div>
+            <span asp-validation-for="From" class="text-danger"></span>
+            <div class="form-control-static">
+                <label asp-for="To">Destination</label>
+                <input asp-for="To" class="form-control" name="To" placeholder="The city you are to destinate">
+            </div>
+            <span asp-validation-for="To" class="text-danger"></span>
+            <div class="form-control-static">
+                <label asp-for="Date">Date</label>
+                <input asp-for="Date" class="form-control" name="Date" placeholder="The date you depart">
+            </div>
+            <span asp-validation-for="Date" class="text-danger"></span>
+            <div class="form-control-static">
+                <label asp-for="CancelDate">CancelDate</label>
+                <input asp-for="CancelDate" class="form-control" name="Cancel Date" placeholder="The date you depart">
+            </div>
+            <span asp-validation-for="CancelDate" class="text-danger"></span>
+            <div class="form-control-static">
+                <label asp-for="AdditionalWay">Your way</label>
+                <input asp-for="AdditionalWay" class="form-control" name="AdditionalWay" placeholder="Your city list on the road">
+            </div>
+            <span asp-validation-for="AdditionalWay" class="text-danger"></span>
+            <div class="form-control-static">
+                <label asp-for="SeatsCount">Seats Count</label>
+                <input asp-for="SeatsCount" class="form-control" name="SeatsCount" placeholder="The number of seats available">
+            </div>
+            <span asp-validation-for="SeatsCount" class="text-danger"></span>
+            <div class="form-control-static">
+                <label asp-for="Price">Price</label>
+                <input asp-for="Price" class="form-control" name="Price" placeholder="How much a ticket to your trip costs">
+            </div>
+            <span asp-validation-for="Price" class="text-danger"></span>
+            <div class="form-control-static">
+                <label asp-for="Deposit">Deposit</label>
+                <input asp-for="Deposit" class="form-control" name="Deposit" placeholder="How much you deposit on a trip">
+            </div>
+            <span asp-validation-for="Deposit" class="text-danger"></span>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    }
+    else
+    {
+        <h3> Generate a wallet in the your account info section</h3>
+    }
+}
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

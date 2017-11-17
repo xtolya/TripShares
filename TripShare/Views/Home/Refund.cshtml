@@ -1,0 +1,19 @@
+﻿@model RefundViewModel
+
+<br />
+<h4>    @ViewData["Message"]</h4>
+
+<form method="post">
+    <div class="form-control-static">
+        <label asp-for="Address" class="control-label"></label>
+
+        <input asp-for="Address" class="form-control" placeholder="Address where to refund neo" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+    <div class="form-control-static">
+        <label asp-for="Amount" class="control-label col"></label>
+        <input asp-for="Amount" class="form-control col" placeholder="Amount to refund" />
+        <span asp-validation-for="Amount" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Request a refund</button>
+</form>

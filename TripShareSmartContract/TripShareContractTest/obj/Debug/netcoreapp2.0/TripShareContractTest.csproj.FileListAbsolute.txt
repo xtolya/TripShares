@@ -1,0 +1,14 @@
+C:\Users\Tolya\source\repos\TripShareSmartContract\TripShareContractTest\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\Tolya\source\repos\TripShareSmartContract\TripShareContractTest\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\Tolya\source\repos\TripShareSmartContract\TripShareContractTest\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\Tolya\source\repos\TripShareSmartContract\TripShareContractTest\bin\Debug\netcoreapp2.0\TripShareContractTest.deps.json
+C:\Users\Tolya\source\repos\TripShareSmartContract\TripShareContractTest\bin\Debug\netcoreapp2.0\TripShareContractTest.runtimeconfig.json
+C:\Users\Tolya\source\repos\TripShareSmartContract\TripShareContractTest\bin\Debug\netcoreapp2.0\TripShareContractTest.runtimeconfig.dev.json
+C:\Users\Tolya\source\repos\TripShareSmartContract\TripShareContractTest\bin\Debug\netcoreapp2.0\TripShareContractTest.dll
+C:\Users\Tolya\source\repos\TripShareSmartContract\TripShareContractTest\bin\Debug\netcoreapp2.0\TripShareContractTest.pdb
+C:\Users\Tolya\source\repos\TripShareSmartContract\TripShareContractTest\obj\Debug\netcoreapp2.0\TripShareContractTest.csprojResolveAssemblyReference.cache
+C:\Users\Tolya\source\repos\TripShareSmartContract\TripShareContractTest\obj\Debug\netcoreapp2.0\TripShareContractTest.csproj.CoreCompileInputs.cache
+C:\Users\Tolya\source\repos\TripShareSmartContract\TripShareContractTest\obj\Debug\netcoreapp2.0\TripShareContractTest.AssemblyInfoInputs.cache
+C:\Users\Tolya\source\repos\TripShareSmartContract\TripShareContractTest\obj\Debug\netcoreapp2.0\TripShareContractTest.AssemblyInfo.cs
+C:\Users\Tolya\source\repos\TripShareSmartContract\TripShareContractTest\obj\Debug\netcoreapp2.0\TripShareContractTest.dll
+C:\Users\Tolya\source\repos\TripShareSmartContract\TripShareContractTest\obj\Debug\netcoreapp2.0\TripShareContractTest.pdb

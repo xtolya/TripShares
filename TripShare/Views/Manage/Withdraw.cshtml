@@ -1,0 +1,48 @@
+﻿@inject IBlockchainRepository BlockchainRepository
+@inject UserManager<ApplicationUser> UserManager
+@model WithdrawViewModel
+
+@{
+    ViewData["Title"] = "Withdraw";
+    ViewData.AddActivePage(ManageNavPages.Withdraw);
+}
+
+@{
+    var user = await UserManager.GetUserAsync(User);
+    if (user.Wif != null)
+    {
+        <form class="form-group" method="post">
+                <h4>@ViewData["Message"]</h4>
+            <div class="form-control-static">
+                <label asp-for="Address" class="ontrol-label"></label>
+                <input asp-for="Address" class="form-control" placeholder="Address where to send" />
+            </div>
+            <span asp-validation-for="Address" class="text-danger"></span>
+            <div class="form-control-staticp">
+                <label asp-for="Amount" class="control-label"></label>
+                <input asp-for="Amount" class="form-control" placeholder="Amount to send" />
+            </div>
+            <span asp-validation-for="Amount" class="text-danger"></span>
+            <div class="form-control-static">
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-info active">
+                        <input type="radio" asp-for="Asset" value="0" autocomplete="off" checked> NEO
+                    </label>
+                    <label class="btn btn-info">
+                        <input type="radio" asp-for="Asset" value="1" autocomplete="off"> GAS
+                    </label>
+                    <span asp-validation-for="Asset" class="text-danger"></span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary col-sm-5">Withdraw</button>
+        </form>
+    }
+    else
+    {
+        <h3>Generate a wallet in it's section</h3>
+    }
+}
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

@@ -1,0 +1,42 @@
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject IBlockchainRepository BlockchainRepository
+@using TripShare.Implementations
+
+@if (SignInManager.IsSignedIn(User))
+{
+    Balance balances;
+    try
+    {
+        var user = await UserManager.GetUserAsync(User);
+        balances = await BlockchainRepository.GetBalance(NETWORK_TYPE.TESTNET, user.Address);
+        var str = await BlockchainRepository.GetStorage(NETWORK_TYPE.TESTNET, Helper.ReverseHex(user.ScriptHash));
+        balances.TSR = str == null ? 0 : Helper.Hex2Num(str);
+    }
+    catch(Exception)
+    {
+        balances = new Balance { NEO = 0, GAS = 0, TSR = 0};
+    }
+
+    <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a asp-area="" asp-controller="Manage" asp-action="Wallet">TestNet NEO: <font size="4">@balances.NEO</font> GAS: <font size="4">@balances.GAS</font> TSR: <font size="4">@balances.TSR</font></a>
+            </li>
+            <li>
+                <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">@UserManager.GetUserName(User)</a>
+            </li>
+            <li>
+                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
+            </li>
+        </ul>
+    </form>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+
+        <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
+        <li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
+    </ul>
+}

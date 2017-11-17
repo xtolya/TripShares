@@ -1,0 +1,78 @@
+﻿@model TripShare.Models.Trip
+
+@if (Model == null)
+{
+    <h2>This trip does not exist, sorry!:(</h2>
+}
+else
+{
+    <h2>Trip Info</h2>
+    <form class="form-horizontal" action=@Url.Action("CancelSeat", "Trip", new { Model.Id }) method="post">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">ID</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" value=@Model.Id disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Departure from</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" value=@Model.From disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Destination point</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" value=@Model.To disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Driver ID</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" value=@Model.DriverId disabled>
+            </div>
+        </div>
+        @if (Model.Passengers == null)
+        {
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Seats avalaible</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" value=@Model.SeatsCount disabled>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Seats avalaible</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" value=@(Model.SeatsCount - Model.Passengers.Count()) disabled>
+                </div>
+            </div>
+            @foreach (Passenger p in Model.Passengers)
+            {
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Passenger ID</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" value=@p.UserId disabled>
+                    </div>
+                </div>
+            }
+        }
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Way through</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" value=@Model.AdditionalWay disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Price</label>
+
+            <div class="col-sm-8">
+                <input class="form-control" type="text" value=@Model.Price disabled>
+            </div>
+            <button type="submit" class="btn btn-info col-sm-1" value="Submit">Cancel</button>
+
+        </div>
+    </form>
+}

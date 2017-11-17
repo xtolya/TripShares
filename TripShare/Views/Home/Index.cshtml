@@ -1,0 +1,32 @@
+﻿@model TripInfoByStringViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Find your trip!</h1>
+<form action=@Url.Action("TripInfoByString", "Home") method="post">
+    <div class="form-control-static">
+        <label asp-for="From">Departure Point</label>
+        <input asp-for=From class="form-control" name="From" placeholder="The city you departure from">
+    </div>
+    <span asp-validation-for="From" class="text-danger"></span>
+    <div class="form-control-static">
+        <label asp-for="To">Destination Point</label>
+        <input asp-for=To class="form-control" name="To" placeholder="The city you are to destinate">
+    </div>
+    <span asp-validation-for="To" class="text-danger"></span>
+    <div class="form-control-static">
+        <label asp-for="Date">Date</label>
+        <input asp-for=Date class="form-control" name="Date" placeholder="Date">
+    </div>
+    <span asp-validation-for="Date" class="text-danger"></span>
+    <button type="submit" class="btn btn-info" value="Submit">Search</button>
+</form>
+<h2>Find your trip by id</h2>
+<form action=@Url.Action("TripInfoById", "Home") method="post">
+    <div class="form-control-static">
+        <label for="id">Id</label>
+        <input type="text" class="form-control" name="id" placeholder="Id in a string">
+    </div>
+    <button type="submit" class="btn btn-info" value="Submit">Search</button>
+</form>

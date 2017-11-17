@@ -1,0 +1,7 @@
+C:\Users\Tolya\source\repos\TripShareSmartContract\TripShareSmartContract\bin\Debug\TripShareSmartContract.dll
+C:\Users\Tolya\source\repos\TripShareSmartContract\TripShareSmartContract\bin\Debug\TripShareSmartContract.pdb
+C:\Users\Tolya\source\repos\TripShareSmartContract\TripShareSmartContract\bin\Debug\Neo.SmartContract.Framework.dll
+C:\Users\Tolya\source\repos\TripShareSmartContract\TripShareSmartContract\obj\Debug\TripShareSmartContract.csproj.CoreCompileInputs.cache
+C:\Users\Tolya\source\repos\TripShareSmartContract\TripShareSmartContract\obj\Debug\TripShareSmartContract.dll
+C:\Users\Tolya\source\repos\TripShareSmartContract\TripShareSmartContract\obj\Debug\TripShareSmartContract.pdb
+C:\Users\Tolya\source\repos\TripShareSmartContract\TripShareSmartContract\obj\Debug\TripShareSmartContract.csprojResolveAssemblyReference.cache

@@ -1,0 +1,83 @@
+﻿@model List<TripShare.Models.Trip>
+
+@if (Model.Count() != 0)
+{
+    <h2>Trips you requested</h2>
+    <ul class="list-group">
+        @foreach (var trip in Model)
+        {
+            <li class="list-group-item">
+                <form class="form-horizontal" action=@Url.Action("TripInfoById", "Home", new { trip.Id }) method="post">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">ID</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" value=@trip.Id disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Departure from</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" value=@trip.From disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Destination point</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" value=@trip.To disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Driver ID</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" value=@trip.DriverId disabled>
+                        </div>
+                    </div>
+                        @if (trip.Passengers == null)
+                        {
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Seats avalaible</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="text" value=@trip.SeatsCount disabled>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Seats avalaible</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="text" value=@(trip.SeatsCount - trip.Passengers.Count()) disabled>
+                                </div>
+                            </div>
+                            @foreach (Passenger p in trip.Passengers)
+                            {
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Passenger ID</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="text" value=@p.UserId disabled>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Way through</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" value=@trip.AdditionalWay disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Price</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" value=@trip.Price disabled>
+                        </div>
+                        <button type="submit" class="btn btn-info col-sm-1" value="Submit">View</button>
+                    </div>
+                </form>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <h2>We couldn't find any trip for you, sorry!:(</h2>
+}
