@@ -120,6 +120,15 @@ module.exports = {
 
     InvokeContractReserveSeat: InvokeContractFactory('reserveSeat'),
 
+    InvokeContractRequestRefund: InvokeContractFactory('requestRefund'),
+
+    InvokeContractPayForTrip: InvokeContractFactory('payForTrip'),
+
+    InvokeContractCleanUp: InvokeContractFactory('cleanUp'),
+
+    InvokeContractCancelTrip: InvokeContractFactory('cancelTrip'),
+
+
     InvokeContractMintToken: (callback, net, wif, scriptHash, gasCost, ...args) => {
         const account = getAccountFromWIFKey(wif)
 

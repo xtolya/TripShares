@@ -21,13 +21,15 @@ namespace TripShare.Controllers
         private readonly INodeServices nodeServices;
         private readonly IRefundRepository refundRepository;
         private string GetScriptLocation() => "./Node/Blockchain.js";
+        private readonly IBlockchainRepository blockchain;
 
-        public HomeController(UserManager<ApplicationUser> _userManager, ITripRepository _tripRepository, INodeServices _nodeServices, IRefundRepository _refundRepository)
+        public HomeController(UserManager<ApplicationUser> _userManager, ITripRepository _tripRepository, INodeServices _nodeServices, IRefundRepository _refundRepository, IBlockchainRepository _blockchain)
         {
             userManager = _userManager;
             tripRepository = _tripRepository;
             nodeServices = _nodeServices;
             refundRepository = _refundRepository;
+            blockchain = _blockchain;
         }
 
         private string GetNetwork()
@@ -71,6 +73,16 @@ namespace TripShare.Controllers
                 return RedirectToAction("RegisterWalletAsk");
 
             bool bought = tripRepository.BuySeat(id, user.Id);
+            var res = await blockchain.InvokeContractReserveSeat(NETWORK_TYPE.TESTNET, user.Wif, id, user.ScriptHash, 2);
+
+            if (res)
+            {
+                if (bought)
+                {
+                    return RedirectToAction("TripBuySucc");
+                }
+                return RedirectToAction("TripBuySucc");
+            }
 
             if (bought)
             {
@@ -102,20 +114,36 @@ namespace TripShare.Controllers
             return View(trip);
         }
 
-        [AllowAnonymous]
         [HttpGet]
         public IActionResult Refund()
         {
             return View();
         }
 
-        [AllowAnonymous]
         [HttpPost]
-        public IActionResult Refund(RefundViewModel model)
+        public async Task<IActionResult> Refund(RefundViewModel model)
         {
+            var user = await userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                throw new ApplicationException($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
+            }
+
             ViewData["Message"] = "";
-            var added = refundRepository.AddRefund(new Refund { Address = model.Address, Amount = model.Amount, Done = false});
-            ViewData["Message"] = added ? "Refund was requested" : "Failed to request";
+            var added = refundRepository.AddRefund(new Refund { Address = model.Address, Amount = model.Amount, Done = false });
+            var bc = await blockchain.InvokeContractRequestRefund(NETWORK_TYPE.TESTNET, user.Wif, user.ScriptHash, 10, 2);
+
+            if (bc)
+            {
+                if (added)
+                {
+                    ViewData["Message"] = "Transaction and db added";
+                    return View(model);
+                }
+                ViewData["Message"] = "transaction done, db fail";
+                return View(model);
+            }
+            ViewData["Message"] = added ? "Refund was requested (only db)" : "Failed to request";
             return View(model);
         }
 
