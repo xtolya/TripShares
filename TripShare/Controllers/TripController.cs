@@ -60,10 +60,11 @@ namespace TripShare.Controllers
             };
 
             var res = await blockchain.InvokeContractRegisterTrip(NETWORK_TYPE.TESTNET, user.Wif, t, 3);
+            var dbsend = tripRepository.AddTrip(t);
 
             if (res)
             {
-                if (tripRepository.AddTrip(t))
+                if (dbsend)
                 {
                     ViewData["Message"] = "Transaction sent to blockchain and added to db";
                     return View("RegisterTrip");
@@ -72,7 +73,7 @@ namespace TripShare.Controllers
                 return View("RegisterTrip");
             }
 
-            if (tripRepository.AddTrip(t))
+            if (dbsend)
             {
                 ViewData["Message"] = "Transaction fail but added to db";
                 return View("RegisterTrip");
@@ -130,10 +131,10 @@ namespace TripShare.Controllers
             }
 
             var res = await blockchain.InvokeContractCancelTrip(NETWORK_TYPE.TESTNET, user.Wif, id, 2);
-
+            var resdb = tripRepository.CancelTrip(id, user.ScriptHash);
             if (res)  //blockchain cancel trip
             {
-                if (tripRepository.CancelTrip(id, user.ScriptHash))
+                if (resdb)
                 {
                     ViewData["Message"] = "Transaction sent to sc and deleted from db";
                     return View("CancelTripSucc");
@@ -142,7 +143,7 @@ namespace TripShare.Controllers
                 return View("CancelTripSucc");
             }
 
-            if (tripRepository.CancelTrip(id, user.ScriptHash))
+            if (resdb)
             {
                 ViewData["Message"] = "Transaction fail but removed from db";
                 return View("CancelTripSucc");
@@ -197,10 +198,10 @@ namespace TripShare.Controllers
             }
 
             var res = await blockchain.InvokeContractCancelSeat(NETWORK_TYPE.TESTNET, user.Wif, id, user.ScriptHash, 2);
-
+            var resdb = tripRepository.CancelSeat(id, user.Id);
             if (res) //blockchain cancelseat method call
             {
-                if (tripRepository.CancelSeat(id, user.Id))
+                if (resdb)
                 {
                     ViewData["Message"] = "Transaction sent and removed from db";
                     return View("CancelSeatSucc");
@@ -209,7 +210,7 @@ namespace TripShare.Controllers
                 return View("CancelSeatSucc");
             }
 
-            if (tripRepository.CancelSeat(id, user.Id))
+            if (resdb)
             {
                 ViewData["Message"] = "Transaction fail but on registered on db";
                 return View("CancelSeatSucc");
