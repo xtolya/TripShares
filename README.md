@@ -40,8 +40,8 @@ Theres a section at the top where you can watch your seat (search only in db)
 
 Again you can click on it and cancel the seat.
 
-Without registration:
-You can search on the main page of the database
-
 You can request a refund (transaction on blockchain for method RequestRefund)
 ![alt text](https://github.com/xtolya/TripShares/blob/master/images/NoRegRefund.png)
+
+Without registration:
+You can search on the main page of the database
