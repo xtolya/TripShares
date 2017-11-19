@@ -1,0 +1,46 @@
+NEO-GUI USAGE
+(ONLY WHEN TOKENS ARE MINTED (CAN BE DONE IN A WEBAPP))
+
+NEP-5 TOKEN INTERFACE IMPLEMENTED
+
+SCRIPTHASH MUST BE REVERSED HEX (not like u see it in neo-gui)
+
+register trip:
+first param string: registerTrip
+THEN 7 PARAMETERS:
+1)ID of a trip : "abcdefABCDEF1234567890" chars using only 14 letters string.TO HEX
+2)driver scriptHash REVERSED
+3)YOUR ROAD in any (STRING) TO HEX
+4)UNIX formatted date of a trip
+5)UNIX formatted cancel date (after which cancel of a trip will lead to lose deposit)
+6)Count of seats in a trip
+7)Price of a trip
+8)Drivers deposit
+
+Cancel trip:
+first param operation string: cancelTrip
+1)id of a trip : "abcdefABCDEF1234567890" chars using only 14 letters string. TO HEX
+
+Reserve a seat:
+first param operation string: reserveSeat
+1)id of a trip : "abcdefABCDEF1234567890" chars using only 14 letters string.TO HEX
+2)passengers scriptHash REVERSED
+
+Cancel a seat:
+first param operation string: cancelSeat
+1)id of a trip : "abcdefABCDEF1234567890" chars using only 14 letters string.TO HEX
+2)passengers scriptHash REVERSED
+
+Pay for trip
+first param operation string: payForTrip
+1)id of a trip : "abcdefABCDEF1234567890" chars using only 14 letters string.TO HEX
+2)passengers scriptHash REVERSED
+
+Request Refund
+first param operation string: requestRefund
+1)users scripthash REVERSED
+2)value to refund
+
+Clean ip
+first param operation string: cleanUp
+1)id of a trip : "abcdefABCDEF1234567890" chars using only 14 letters string.TO HEX

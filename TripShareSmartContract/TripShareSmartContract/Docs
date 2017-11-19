@@ -1,0 +1,35 @@
+TO RUN FUNCTIONS WATCH INDEX.JS
+AND CHANGE FUNCTION HOWEVER YOU WANT
+
+WEB APP 
+
+Register and login features
+Create wallet feature in personal profile (only registered)
+Mint token feature (only with created wallet in wallet section)
+Withdraw fund from your wallet to your address (manage profile section)
+Displaying balance of the token
+
+Header displays your balances (only if wallet registered)
+"Main section"
+search trips by its info
+
+"Your trips section"
+VIEW INFO:
+Click "your trips"
+CANCEL A TRIP:
+Click "your trips" -> "View"
+"Register a trip section"
+Create a trip on its section
+Register form to be filled, then creates a trip and commits it
+to our bd and blockchain
+"Your seats"
+Displays all your sits which were reserved through web APP
+"refund section"
+request a refund of token
+"MANAGE PROFILE"
+"WALLET"
+GENERATE WALLET
+WITHDRAW FUNDS
+MINT TOKENS
+
+
