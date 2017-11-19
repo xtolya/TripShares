@@ -55,7 +55,8 @@ Once your wallet generated you can see amounts you have there and use withdraw a
 ![alt text](https://github.com/xtolya/TripShares/blob/master/images/RegWithdraw.png)
 ![alt text](https://github.com/xtolya/TripShares/blob/master/images/RegMint.png)
 
-Then at the top you can register a trip (will be commited to db and blockchain)
+Then at the top you can register a trip (TO GO ON BC REQUIRED 3 GAS AND TRS MORE THAN DEPOSIT ON THE BALANCE)
+(will be commited to db and blockchain)
 ![alt text](https://github.com/xtolya/TripShares/blob/master/images/RegRegTrip.png)
 
 Then you can watch it in your trips section (won't watch in blockchain)
@@ -67,7 +68,7 @@ You can click view on any trip then you can cancel a trip
 By searching trips on the main page (currently only through db) you will get to
 ![alt text](https://github.com/xtolya/TripShares/blob/master/images/RegAfterSearchReserve.png)
 
-There you can reserve a seat
+There you can reserve a seat (required TSR to deposit and gas to commit on bc)
 ![alt text](https://github.com/xtolya/TripShares/blob/master/images/TripReservedDb.png)
 
 Theres a section at the top where you can watch your seat (search only in db)
@@ -75,7 +76,7 @@ Theres a section at the top where you can watch your seat (search only in db)
 
 Again you can click on it and cancel the seat.
 
-You can request a refund (transaction on blockchain for method RequestRefund)
+You can request a refund (transaction on blockchain for method RequestRefund, some gas required)
 ![alt text](https://github.com/xtolya/TripShares/blob/master/images/NoRegRefund.png)
 
 Without registration:
