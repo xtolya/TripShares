@@ -70,3 +70,4 @@ typings/
 .vs/TripShare/v15/.suo
 .vs/TripShare/v15/Server/sqlite3/storage.ide
 *.ide
+TripShare/appsettings.json

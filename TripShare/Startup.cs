@@ -25,8 +25,8 @@ namespace TripShare
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationUserDbContext>(options => options.UseSqlServer("Server=tcp:tripuseridentity.database.windows.net,1433;Initial Catalog=ApplicationUserDb;Persist Security Info=False;User ID=tolya;Password=Hd3s1589;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
-            services.AddDbContext<TripsDbContext>(options => options.UseSqlServer("Server=tcp:tripsdb.database.windows.net,1433;Initial Catalog=TripsDb;Persist Security Info=False;User ID=tolya;Password=Hd3s1589;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
+            services.AddDbContext<ApplicationUserDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ApplicationUserDbContext")));
+            services.AddDbContext<TripsDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TripsDbContext")));
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationUserDbContext>()
                 .AddDefaultTokenProviders();
