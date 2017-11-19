@@ -1,4 +1,39 @@
 # TripShares
+# Introduction
+I assume everybody had a situation when someone cancels his trip just before it was
+upposed to start. Or someone who reserved a seat cancels it at the last moment.
+In any case it costs a huge amount of time to find a new trip and the one who broke
+your plans done lose anything.
+So how confident can you be in your future plans?
+
+In this smartcontract for the trip registration you must make a TRS deposit which 
+is viewable for any user. You also enter the date when trip is planned to start and the cancel time
+before which a trip can be canceled for free. Since its blockchain, this data
+is viewable for everyone. SC won't allow you to take your deposit back when the trip
+is not done and the cancel date has passed. Trip is marked DONE only when 
+every passenger pays for it (confirms that its done, should be a real-life meating
+like a simple checkout) Then you get your deposit back. The same scheme works for seat reservation. 
+Passenger makes deposit which equal to drivers divided by seats count. Once trip is paid, 
+the deposit gets back to the passenger.
+Blockchain provides confirmation of deposits, time limits and etc. Everything becomes transparent.
+If the driver is confident in his plans he should make a bigger deposit, so it will be 
+bigger for passengers too and then he probably can rely on them. Also a passenger 
+which is confident in his plans will choose a driver with a bigger deposit, because 
+there are less chances to fail with a driver who made a huge deposit.
+However, nobody is interested in not confirmation the trip, because not confirming means 
+losing deposit. (Anyway these confirmations should be done face to face since the trip
+allows it).
+
+Contract includes its own token which is equal to NEO because it has 1 to 100 swap rate
+You can buy a token whenever you want
+You can request a refund whenever you want and there isn't any time limitations such as ico
+sually has.
+
+Overall, this dApp is made not for speculative purposes as it is usually done in many projects
+somehow associated with blockchain technology itself!
+
+# Usage
+
 SC_USAGE  -  DOCS TO USE WITH NEO-GUI
 DOCS  - simple docs for web App
 
