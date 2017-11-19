@@ -112,6 +112,8 @@ namespace TripShare.Implementations
             }
             else
             {
+                if (trip.SeatsCount - trip.Passengers.Count() < 1)
+                    return false;
                 trip.Passengers.Add(passenger);
             }
             db.Attach(trip);
