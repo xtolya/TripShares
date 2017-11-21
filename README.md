@@ -6,23 +6,16 @@ In any case it costs a huge amount of time to find a new trip and the one who br
 your plans done lose anything.
 So how confident can you be in your future plans?
 
-In this smartcontract for the trip registration you must make a TRS deposit which 
-is viewable for any user. You also enter the date when trip is planned to start and the cancel time
-before which a trip can be canceled for free. Since its blockchain, this data
-is viewable for everyone. SC won't allow you to take your deposit back when the trip
-is not done and the cancel date has passed. Trip is marked DONE only when 
-every passenger pays for it (confirms that its done, should be a real-life meating
-like a simple checkout) Then you get your deposit back. The same scheme works for seat reservation. 
-Passenger makes deposit which equal to drivers divided by seats count. Once trip is paid, 
-the deposit gets back to the passenger.
-Blockchain provides confirmation of deposits, time limits and etc. Everything becomes transparent.
-If the driver is confident in his plans he should make a bigger deposit, so it will be 
-bigger for passengers too and then he probably can rely on them. Also a passenger 
-which is confident in his plans will choose a driver with a bigger deposit, because 
-there are less chances to fail with a driver who made a huge deposit.
-However, nobody is interested in not confirmation the trip, because not confirming means 
-losing deposit. (Anyway these confirmations should be done face to face since the trip
-allows it).
+Current version works with wallets generated there and takes some test-GAS for transactions. (Will be fixed after I figure out neon-js GAS calculations)
+To communicate with neo blockchain I used neon-js and node.js. Web app is on asp.net core 2.0 (mvc)
+The main function of dApp is to provide some sort of insurance in planning of people's trips with transparency of SC. Web app is just an interface to make searching through SC and use its functions to register trip and etc. Logic is very simple: 
+1) a driver registers a trip with a deposit (locked is SC) and a cancel date
+2) a passenger buys a seat on this trip making a deposit of a driver divided by seats count (also locked)
+3) if driver/passenger cancels a trip/seat before cancel date it is done with returns of deposit
+4) if a passenger cancels his seat after cancel date his deposit goes to the driver
+5) if a driver cancels the trip after cancel date his deposit spreads for the passengers
+6) when the trip is done everyone gets his deposit back (after passengers pay for seats)
+To summarize, this dApp is made for people which are confident in their plans. Drivers can make a higher deposit to be sure a trip will happen, passengers can search for higher deposit trips. So everyone will be happy in any case. With SC you don't need a reliable middleman to hold deposit and solve disputes.
 
 Contract includes its own token which is equal to NEO because it has 1 to 100 swap rate
 You can buy a token whenever you want
